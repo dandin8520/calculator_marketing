@@ -143,18 +143,18 @@
             }) + '%';
         }
 function downloadCalculator() {
-    const node = document.querySelector(".container");
-    
-    domtoimage.toJpeg(node, {
-        quality: 1.0,
-        bgcolor: '#ffffff'
-    })
-    .then(function (dataUrl) {
-        const link = document.createElement('a');
-        link.download = 'roi-calculator.jpg';
-        link.href = dataUrl;
-        link.click();
-    });
+   const node = document.querySelector(".container");
+   
+   domtoimage.toJpeg(node, {
+       quality: 1.0,
+       bgcolor: '#ffffff'
+   })
+   .then(function (dataUrl) {
+       const link = document.createElement('a');
+       link.download = 'roi-calculator.jpg';
+       link.href = dataUrl;
+       link.click();
+   });
 }
     </script>
 </body>
