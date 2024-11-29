@@ -141,12 +141,20 @@
                 maximumFractionDigits: 1
             }) + '%';
         }
+function downloadCalculator() {
+    const scale = 2; // Increase resolution
+    const options = {
+        scale: scale,
+        backgroundColor: '#ffffff',
+        logging: false,
+        useCORS: true,
+        quality: 1.0
+    };
 
-      function downloadCalculator() {
-    html2canvas(document.querySelector(".container")).then(canvas => {
+    html2canvas(document.querySelector(".container"), options).then(canvas => {
         const link = document.createElement('a');
         link.download = 'roi-calculator.jpg';
-        link.href = canvas.toDataURL('image/jpeg', 0.8);
+        link.href = canvas.toDataURL('image/jpeg', 1.0); // Maximum quality
         link.click();
     });
 }
