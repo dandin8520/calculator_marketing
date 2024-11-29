@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/calculator.css">
     <link rel="stylesheet" href="css/footer.css">
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    
 </head>
 <body>
     <div class="container">
@@ -143,19 +143,20 @@
             }) + '%';
         }
 function downloadCalculator() {
-    const scale = 2; // Increase resolution
-    const options = {
-        scale: scale,
-        backgroundColor: '#ffffff',
-        logging: false,
-        useCORS: true,
-        quality: 1.0
-    };
-
-    html2canvas(document.querySelector(".container"), options).then(canvas => {
+    const node = document.querySelector(".container");
+    
+    domtoimage.toJpeg(node, {
+        quality: 1.0,
+        bgcolor: '#ffffff',
+        style: {
+            'transform': 'scale(2)',
+            'transform-origin': 'top left'
+        }
+    })
+    .then(function (dataUrl) {
         const link = document.createElement('a');
         link.download = 'roi-calculator.jpg';
-        link.href = canvas.toDataURL('image/jpeg', 1.0); // Maximum quality
+        link.href = dataUrl;
         link.click();
     });
 }
