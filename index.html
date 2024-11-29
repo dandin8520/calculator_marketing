@@ -90,7 +90,47 @@
             </a>
         </div>
     </footer>
+  <script>
+        function formatNumber(num) {
+            return new Intl.NumberFormat('he-IL', {
+                maximumFractionDigits: 0
+            }).format(num);
+        }
 
-    <script src="js/calculator.js"></script>
+        function calculate() {
+            // Get input values
+            const leads = parseFloat(document.getElementById('numberOfLeads').value) || 0;
+            const cpl = parseFloat(document.getElementById('cpl').value) || 0;
+            const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
+            const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
+            const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
+            const marketerFee = parseFloat(document.getElementById('marketerFee').value) || 0;
+
+            // Calculate metrics
+            const mediaSpend = leads * cpl;
+            const dealsClose = Number((leads * (conversionRate / 100)).toFixed(1));
+            const totalCost = mediaSpend + marketerFee;
+            const costPerDeal = dealsClose ? Math.round(totalCost / dealsClose) : 0;
+            const totalRevenue = dealsClose * revenuePerDeal;
+            const netRevenue = totalRevenue * (profitMargin / 100);
+            const roi = totalCost ? ((netRevenue - totalCost) / totalCost) * 100 : 0;
+
+            // Update UI
+            document.getElementById('mediaSpend').textContent = '₪' + formatNumber(mediaSpend);
+            document.getElementById('marketerFeeResult').textContent = '₪' + formatNumber(marketerFee);
+            document.getElementById('totalCost').textContent = '₪' + formatNumber(totalCost);
+            document.getElementById('dealsClose').textContent = dealsClose.toLocaleString('he-IL', {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
+            });
+            document.getElementById('costPerDeal').textContent = '₪' + formatNumber(costPerDeal);
+            document.getElementById('totalRevenue').textContent = '₪' + formatNumber(totalRevenue);
+            document.getElementById('netRevenue').textContent = '₪' + formatNumber(netRevenue);
+            document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
+            }) + '%';
+        }
+    </script>
 </body>
 </html>
