@@ -4,281 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>מחשבון ROI שיווק</title>
-    <style>
-body {
-    font-family: system-ui, -apple-system, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: linear-gradient(135deg, #f5f5f5, #e8eaed);
-    min-height: 100vh;
-    margin-top:30px;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: linear-gradient(145deg, #ffffff, #f8fafc);
-    padding: 32px;
-    border-radius: 24px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-}
-
-.grid {
-    display: grid;
-    gap: 32px;
-}
-
-@media (min-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.input-group {
-    margin-bottom: 20px;
-    transition: transform 0.2s ease;
-}
-
-.input-group:hover {
-    transform: translateY(-2px);
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-    color: #1e293b;
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: -0.2px;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    text-align: right;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    background: white;
-    color: #1e293b;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-}
-
-input:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-input:focus {
-    outline: none;
-    border-color: #94a3b8;
-    box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.1);
-}
-
-.results {
-    background: linear-gradient(145deg, #f8fafc, #f1f5f9);
-    padding: 28px;
-    border-radius: 16px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
-}
-
-.results-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
-
-.result-item {
-    transition: transform 0.2s ease;
-}
-
-.result-item:hover {
-    transform: translateY(-2px);
-}
-
-.result-label {
-    color: #64748b;
-    font-size: 0.875rem;
-    margin-bottom: 6px;
-    font-weight: 500;
-}
-
-.result-value {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #0f172a;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-.total-revenue {
-    grid-column: span 2;
-    padding-top: 12px;
-    margin-top: 12px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.total-revenue .result-value {
-    font-size: 1.5rem;
-    background: linear-gradient(90deg, #1e293b, #334155);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-h1 {
-    margin: 0 0 32px 0;
-    color: #0f172a;
-    font-size: 1.75rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    text-align: center;
-}
-
-/* Animation for results updates */
-@keyframes highlight {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.02);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.result-value.highlight {
-    animation: highlight 0.3s ease-out;
-}
-
-/* Initial load animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.container {
-    animation: fadeIn 0.5s ease-out;
-}
-
-/* Input placeholder style */
-input::placeholder {
-    color: #94a3b8;
-    opacity: 0.8;
-}
-
-/* Modern scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f5f9;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
-}
-        .footer {
-    max-width: 800px;
-    margin: 40px auto 0;
-    text-align: center;
-    padding: 40px 20px;
-    background: linear-gradient(145deg, #ffffff, #f8fafc);
-    border-radius: 24px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-    position: relative;
-    overflow: hidden;
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        rgba(255,255,255,0) 0%,
-        rgba(200,200,200,0.4) 50%,
-        rgba(255,255,255,0) 100%);
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    position: relative;
-    z-index: 1;
-}
-
-.footer-credit {
-    font-size: 0.925rem;
-    background: linear-gradient(90deg, #64748b, #94a3b8);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    letter-spacing: 0.3px;
-    font-weight: 500;
-}
-
-.footer-cta {
-    font-size: 1.25rem;
-    background: linear-gradient(90deg, #1e293b, #334155);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-}
-
-.whatsapp-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    color: white;
-    padding: 14px 28px;
-    border-radius: 16px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.05rem;
-    letter-spacing: 0.2px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2),
-                0 0 0 2px rgba(255, 255, 255, 0.1) inset;
-}
-
-.whatsapp-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25),
-                0 0 0 2px rgba(255, 255, 255, 0.2) inset;
-    background: linear-gradient(135deg, #1fa855 0%, #0e7265 100%);
-}
-
-.whatsapp-icon {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.whatsapp-button:hover .whatsapp-icon {
-    transform: scale(1.1) rotate(-8deg);
-}
-</style>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/calculator.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
     <div class="container">
@@ -296,6 +24,10 @@ input::placeholder {
                 <div class="input-group">
                     <label>הכנסה לעסקה (₪)</label>
                     <input type="number" id="revenuePerDeal" placeholder="הזן הכנסה לעסקה">
+                </div>
+                <div class="input-group">
+                    <label>שולי רווח (%)</label>
+                    <input type="number" id="profitMargin" placeholder="הזן שולי רווח">
                 </div>
                 <div class="input-group">
                     <label>אחוז המרה מליד לסגירה (%)</label>
@@ -330,8 +62,12 @@ input::placeholder {
                         <div class="result-value" id="costPerDeal">₪0</div>
                     </div>
                     <div class="result-item">
-                       <div class="result-label">סך הכנסות</div>
+                        <div class="result-label">סך הכנסות</div>
                         <div class="result-value" id="totalRevenue">₪0</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">הכנסה נטו</div>
+                        <div class="result-value" id="netRevenue">₪0</div>
                     </div>
                     <div class="result-item total-revenue">
                         <div class="result-label">החזר השקעה</div>
@@ -342,68 +78,19 @@ input::placeholder {
         </div>
     </div>
 
-    <script>
-        function formatNumber(num) {
-            return new Intl.NumberFormat('he-IL', {
-                maximumFractionDigits: 0
-            }).format(num);
-        }
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-credit">נוצר ע״י דניאל ליבשיץ</div>
+            <div class="footer-cta">צריכים שירותי שיווק?</div>
+            <a href="https://wa.me/972502616188" class="whatsapp-button">
+                <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                </svg>
+                לחצו ונדבר
+            </a>
+        </div>
+    </footer>
 
-        function calculate() {
-            const leads = parseFloat(document.getElementById('numberOfLeads').value) || 0;
-            const cpl = parseFloat(document.getElementById('cpl').value) || 0;
-            const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
-            const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
-            const marketerFee = parseFloat(document.getElementById('marketerFee').value) || 0;
-
-            const mediaSpend = leads * cpl;
-            const dealsClose = Number((leads * (conversionRate / 100)).toFixed(1));
-            const totalCost = mediaSpend + marketerFee;
-            const costPerDeal = dealsClose ? Math.round(totalCost / dealsClose) : 0;
-            const totalRevenue = dealsClose * revenuePerDeal;
-            const roi = totalCost ? ((totalRevenue - totalCost) / totalCost) * 100 : 0;
-
-            document.getElementById('mediaSpend').textContent = '₪' + formatNumber(mediaSpend);
-            document.getElementById('marketerFeeResult').textContent = '₪' + formatNumber(marketerFee);
-            document.getElementById('totalCost').textContent = '₪' + formatNumber(totalCost);
-            document.getElementById('dealsClose').textContent = dealsClose.toLocaleString('he-IL', {
-                minimumFractionDigits: 1,
-                maximumFractionDigits: 1
-            });
-            document.getElementById('costPerDeal').textContent = '₪' + formatNumber(costPerDeal);
-            document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
-                minimumFractionDigits: 1,
-                maximumFractionDigits: 1
-            }) + '%';
-            document.getElementById('totalRevenue').textContent = '₪' + formatNumber(totalRevenue);
-        }
-
-        function updateWithAnimation(elementId, newValue) {
-    const element = document.getElementById(elementId);
-    element.classList.remove('highlight');
-    void element.offsetWidth; // Trigger reflow
-    element.classList.add('highlight');
-    element.textContent = newValue;
-}
-
-        // Add event listeners to all inputs
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('input', calculate);
-        });
-    </script>
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-credit">נוצר ע״י דניאל ליבשיץ</div>
-        <div class="footer-cta">צריכים שירותי שיווק?</div>
-        <a href="https://wa.me/972502616188" class="whatsapp-button">
-            <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
-            </svg>
-            לחצו ונדבר
-        </a>
-    </div>
-</footer>
-    
+    <script src="js/calculator.js"></script>
 </body>
 </html>
