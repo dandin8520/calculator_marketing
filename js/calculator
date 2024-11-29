@@ -5,15 +5,6 @@ function formatNumber(num) {
     }).format(num);
 }
 
-// Update DOM element with animation
-function updateWithAnimation(elementId, newValue) {
-    const element = document.getElementById(elementId);
-    element.classList.remove('highlight');
-    void element.offsetWidth; // Trigger reflow
-    element.classList.add('highlight');
-    element.textContent = newValue;
-}
-
 // Main calculation function
 function calculate() {
     // Get input values
@@ -33,54 +24,49 @@ function calculate() {
     const netRevenue = totalRevenue * (profitMargin / 100);
     const roi = totalCost ? ((netRevenue - totalCost) / totalCost) * 100 : 0;
 
-    // Update UI with animations
-    updateWithAnimation('mediaSpend', '₪' + formatNumber(mediaSpend));
-    updateWithAnimation('marketerFeeResult', '₪' + formatNumber(marketerFee));
-    updateWithAnimation('totalCost', '₪' + formatNumber(totalCost));
-    updateWithAnimation('dealsClose', dealsClose.toLocaleString('he-IL', {
+    // Update DOM elements
+    document.getElementById('mediaSpend').textContent = '₪' + formatNumber(mediaSpend);
+    document.getElementById('marketerFeeResult').textContent = '₪' + formatNumber(marketerFee);
+    document.getElementById('totalCost').textContent = '₪' + formatNumber(totalCost);
+    document.getElementById('dealsClose').textContent = dealsClose.toLocaleString('he-IL', {
         minimumFractionDigits: 1,
         maximumFractionDigits: 1
-    }));
-    updateWithAnimation('costPerDeal', '₪' + formatNumber(costPerDeal));
-    updateWithAnimation('totalRevenue', '₪' + formatNumber(totalRevenue));
-    updateWithAnimation('netRevenue', '₪' + formatNumber(netRevenue));
-    updateWithAnimation('roi', roi.toLocaleString('he-IL', {
+    });
+    document.getElementById('costPerDeal').textContent = '₪' + formatNumber(costPerDeal);
+    document.getElementById('totalRevenue').textContent = '₪' + formatNumber(totalRevenue);
+    document.getElementById('netRevenue').textContent = '₪' + formatNumber(netRevenue);
+    document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
         minimumFractionDigits: 1,
         maximumFractionDigits: 1
-    }) + '%');
+    }) + '%';
 }
 
 // Input validation
 function validateInput(input) {
     const value = parseFloat(input.value);
-    if (value < 0) {
+    if (isNaN(value) || value < 0) {
         input.value = 0;
     }
 }
 
-// Initialize
-function init() {
-    // Add event listeners to all inputs
-    const inputs = document.querySelectorAll('input');
+// Add event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all input elements
+    const inputs = document.querySelectorAll('input[type="number"]');
+    
+    // Add event listeners to each input
     inputs.forEach(input => {
-        input.addEventListener('input', () => {
-            validateInput(input);
+        input.addEventListener('input', function() {
+            validateInput(this);
+            calculate();
+        });
+        
+        input.addEventListener('change', function() {
+            validateInput(this);
             calculate();
         });
     });
 
     // Initial calculation
     calculate();
-}
-
-// Run initialization when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
-
-// Export for potential future module use
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        calculate,
-        formatNumber,
-        validateInput
-    };
-}
+});
