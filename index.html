@@ -141,6 +141,15 @@
                 maximumFractionDigits: 1
             }) + '%';
         }
+
+      function downloadCalculator() {
+    html2canvas(document.querySelector(".container")).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'roi-calculator.jpg';
+        link.href = canvas.toDataURL('image/jpeg', 0.8);
+        link.click();
+    });
+}
     </script>
 </body>
 </html>
