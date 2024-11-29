@@ -13,29 +13,30 @@
         <h1>מחשבון ROI שיווק</h1>
         <div class="grid">
             <div class="inputs">
+                <!-- Add onchange and oninput directly to inputs -->
                 <div class="input-group">
                     <label>מספר לידים</label>
-                    <input type="number" id="numberOfLeads" placeholder="הזן מספר לידים">
+                    <input type="number" id="numberOfLeads" oninput="calculate()" placeholder="הזן מספר לידים">
                 </div>
                 <div class="input-group">
                     <label>עלות פר ליד (₪)</label>
-                    <input type="number" id="cpl" placeholder="הזן עלות פר ליד">
+                    <input type="number" id="cpl" oninput="calculate()" placeholder="הזן עלות פר ליד">
                 </div>
                 <div class="input-group">
                     <label>הכנסה לעסקה (₪)</label>
-                    <input type="number" id="revenuePerDeal" placeholder="הזן הכנסה לעסקה">
+                    <input type="number" id="revenuePerDeal" oninput="calculate()" placeholder="הזן הכנסה לעסקה">
                 </div>
                 <div class="input-group">
                     <label>שולי רווח (%)</label>
-                    <input type="number" id="profitMargin" placeholder="הזן שולי רווח">
+                    <input type="number" id="profitMargin" oninput="calculate()" placeholder="הזן שולי רווח">
                 </div>
                 <div class="input-group">
                     <label>אחוז המרה מליד לסגירה (%)</label>
-                    <input type="number" id="conversionRate" placeholder="הזן אחוז המרה">
+                    <input type="number" id="conversionRate" oninput="calculate()" placeholder="הזן אחוז המרה">
                 </div>
                 <div class="input-group">
                     <label>עלות משווק (₪)</label>
-                    <input type="number" id="marketerFee" placeholder="הזן עלות משווק">
+                    <input type="number" id="marketerFee" oninput="calculate()" placeholder="הזן עלות משווק">
                 </div>
             </div>
 
