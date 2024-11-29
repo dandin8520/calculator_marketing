@@ -147,11 +147,7 @@ function downloadCalculator() {
     
     domtoimage.toJpeg(node, {
         quality: 1.0,
-        bgcolor: '#ffffff',
-        style: {
-            'transform': 'scale(2)',
-            'transform-origin': 'top left'
-        }
+        bgcolor: '#ffffff'
     })
     .then(function (dataUrl) {
         const link = document.createElement('a');
