@@ -40,22 +40,20 @@ h1 {
     display: grid;
     gap: 12px;
     grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 @media (min-width: 768px) {
     .inputs {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
         gap: 16px 20px;
     }
 }
 
 .input-group {
     margin-bottom: 12px;
-    transition: transform 0.2s ease;
-}
-
-.input-group:hover {
-    transform: translateY(-2px);
+    max-width: 400px;
 }
 
 label {
@@ -69,6 +67,7 @@ label {
 
 input {
     width: 100%;
+    max-width: 300px;
     padding: 12px;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
@@ -214,4 +213,41 @@ input:focus {
 
 .whatsapp-button:hover .whatsapp-icon {
     transform: scale(1.1) rotate(-8deg);
+}
+
+input::placeholder {
+    color: #94a3b8;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .results-grid {
+        gap: 16px;
+    }
+    
+    .result-value {
+        font-size: 1.125rem;
+    }
+    
+    .total-revenue .result-value {
+        font-size: 1.25rem;
+    }
+}
+
+@media print {
+    body {
+        background: none;
+    }
+    
+    .container {
+        box-shadow: none;
+    }
+    
+    .footer {
+        display: none;
+    }
 }
