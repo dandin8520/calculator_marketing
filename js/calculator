@@ -1,1 +1,86 @@
+// Number formatting helper
+function formatNumber(num) {
+    return new Intl.NumberFormat('he-IL', {
+        maximumFractionDigits: 0
+    }).format(num);
+}
 
+// Update DOM element with animation
+function updateWithAnimation(elementId, newValue) {
+    const element = document.getElementById(elementId);
+    element.classList.remove('highlight');
+    void element.offsetWidth; // Trigger reflow
+    element.classList.add('highlight');
+    element.textContent = newValue;
+}
+
+// Main calculation function
+function calculate() {
+    // Get input values
+    const leads = parseFloat(document.getElementById('numberOfLeads').value) || 0;
+    const cpl = parseFloat(document.getElementById('cpl').value) || 0;
+    const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
+    const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
+    const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
+    const marketerFee = parseFloat(document.getElementById('marketerFee').value) || 0;
+
+    // Calculate metrics
+    const mediaSpend = leads * cpl;
+    const dealsClose = Number((leads * (conversionRate / 100)).toFixed(1));
+    const totalCost = mediaSpend + marketerFee;
+    const costPerDeal = dealsClose ? Math.round(totalCost / dealsClose) : 0;
+    const totalRevenue = dealsClose * revenuePerDeal;
+    const netRevenue = totalRevenue * (profitMargin / 100);
+    const roi = totalCost ? ((netRevenue - totalCost) / totalCost) * 100 : 0;
+
+    // Update UI with animations
+    updateWithAnimation('mediaSpend', '₪' + formatNumber(mediaSpend));
+    updateWithAnimation('marketerFeeResult', '₪' + formatNumber(marketerFee));
+    updateWithAnimation('totalCost', '₪' + formatNumber(totalCost));
+    updateWithAnimation('dealsClose', dealsClose.toLocaleString('he-IL', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+    }));
+    updateWithAnimation('costPerDeal', '₪' + formatNumber(costPerDeal));
+    updateWithAnimation('totalRevenue', '₪' + formatNumber(totalRevenue));
+    updateWithAnimation('netRevenue', '₪' + formatNumber(netRevenue));
+    updateWithAnimation('roi', roi.toLocaleString('he-IL', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+    }) + '%');
+}
+
+// Input validation
+function validateInput(input) {
+    const value = parseFloat(input.value);
+    if (value < 0) {
+        input.value = 0;
+    }
+}
+
+// Initialize
+function init() {
+    // Add event listeners to all inputs
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            validateInput(input);
+            calculate();
+        });
+    });
+
+    // Initial calculation
+    calculate();
+}
+
+// Run initialization when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
+
+// Export for potential future module use
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        calculate,
+        formatNumber,
+        validateInput
+    };
+}
