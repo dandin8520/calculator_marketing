@@ -53,6 +53,10 @@
                        <div class="result-label">מחזור צפוי</div>
                        <div class="result-value" id="expectedRevenue">₪0</div>
                    </div>
+                  <div class="result-item">
+   <div class="result-label">אחוז עלות גיוס מהרווח</div>
+   <div class="result-value" id="acquisitionCostPercentage">0%</div>
+</div>
                    <div class="result-item">
                        <div class="result-label">רווח צפוי</div>
                        <div class="result-value" id="expectedProfit">₪0</div>
@@ -79,6 +83,8 @@
            const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
            const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
            const customerAcquisitionCost = parseFloat(document.getElementById('customerAcquisitionCost').value) || 0;
+          const acquisitionCostPercentage = expectedProfit ? (mediaRequired / expectedProfit) * 100 : 0;
+
 
            const requiredLeads = conversionRate ? (targetDeals / (conversionRate / 100)) : 0;
            const costPerLead = customerAcquisitionCost * (conversionRate / 100);
@@ -96,6 +102,10 @@
                minimumFractionDigits: 1,
                maximumFractionDigits: 1
            }) + '%';
+          document.getElementById('acquisitionCostPercentage').textContent = acquisitionCostPercentage.toLocaleString('he-IL', {
+   minimumFractionDigits: 1,
+   maximumFractionDigits: 1
+}) + '%';
        }
    </script>
 </body>
