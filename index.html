@@ -77,36 +77,35 @@
            }).format(num);
        }
 
-       function calculate() {
-           const targetDeals = parseFloat(document.getElementById('targetDeals').value) || 0;
-           const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
-           const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
-           const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
-           const customerAcquisitionCost = parseFloat(document.getElementById('customerAcquisitionCost').value) || 0;
-          const acquisitionCostPercentage = expectedProfit ? (mediaRequired / expectedProfit) * 100 : 0;
+function calculate() {
+    const targetDeals = parseFloat(document.getElementById('targetDeals').value) || 0;
+    const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
+    const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
+    const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
+    const customerAcquisitionCost = parseFloat(document.getElementById('customerAcquisitionCost').value) || 0;
 
+    const requiredLeads = conversionRate ? (targetDeals / (conversionRate / 100)) : 0;
+    const costPerLead = customerAcquisitionCost * (conversionRate / 100);
+    const mediaRequired = requiredLeads * costPerLead;
+    const expectedRevenue = targetDeals * revenuePerDeal;
+    const expectedProfit = expectedRevenue * (profitMargin / 100);
+    const roi = mediaRequired ? ((expectedProfit - mediaRequired) / mediaRequired) * 100 : 0;
+    const acquisitionCostPercentage = expectedProfit ? (mediaRequired / expectedProfit) * 100 : 0;
 
-           const requiredLeads = conversionRate ? (targetDeals / (conversionRate / 100)) : 0;
-           const costPerLead = customerAcquisitionCost * (conversionRate / 100);
-           const mediaRequired = requiredLeads * costPerLead;
-           const expectedRevenue = targetDeals * revenuePerDeal;
-           const expectedProfit = expectedRevenue * (profitMargin / 100);
-           const roi = mediaRequired ? ((expectedProfit - mediaRequired) / mediaRequired) * 100 : 0;
-
-           document.getElementById('requiredLeads').textContent = formatNumber(requiredLeads);
-           document.getElementById('costPerLead').textContent = '₪' + formatNumber(costPerLead);
-           document.getElementById('mediaRequired').textContent = '₪' + formatNumber(mediaRequired);
-           document.getElementById('expectedRevenue').textContent = '₪' + formatNumber(expectedRevenue);
-           document.getElementById('expectedProfit').textContent = '₪' + formatNumber(expectedProfit);
-           document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
-               minimumFractionDigits: 1,
-               maximumFractionDigits: 1
-           }) + '%';
-          document.getElementById('acquisitionCostPercentage').textContent = acquisitionCostPercentage.toLocaleString('he-IL', {
-   minimumFractionDigits: 1,
-   maximumFractionDigits: 1
-}) + '%';
-       }
+    document.getElementById('requiredLeads').textContent = formatNumber(requiredLeads);
+    document.getElementById('costPerLead').textContent = '₪' + formatNumber(costPerLead);
+    document.getElementById('mediaRequired').textContent = '₪' + formatNumber(mediaRequired);
+    document.getElementById('expectedRevenue').textContent = '₪' + formatNumber(expectedRevenue);
+    document.getElementById('expectedProfit').textContent = '₪' + formatNumber(expectedProfit);
+    document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+    }) + '%';
+    document.getElementById('acquisitionCostPercentage').textContent = acquisitionCostPercentage.toLocaleString('he-IL', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+    }) + '%';
+}
    </script>
 </body>
 </html>
