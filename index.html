@@ -1,135 +1,102 @@
 <!DOCTYPE html>
 <html dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מחשבון ROI שיווק</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/calculator.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>מחשבון ROI שיווק</title>
+   <link rel="stylesheet" href="css/main.css">
+   <link rel="stylesheet" href="css/calculator.css">
+   <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
-    <div class="container">
-        <h1>מחשבון ROI שיווק</h1>
-        <div class="grid">
-            <div class="inputs">
-                <div class="input-group">
-                    <label>מספר לידים רצוי</label>
-                    <input type="number" id="numberOfLeads" oninput="calculate()" placeholder="הזן מספר לידים">
-                </div>
-                <div class="input-group">
-                    <label>הכנסה לעסקה (₪)</label>
-                    <input type="number" id="revenuePerDeal" oninput="calculate()" placeholder="הזן הכנסה לעסקה">
-                </div>
-                <div class="input-group">
-                    <label>אחוז המרה מליד לעסקה (%)</label>
-                    <input type="number" id="conversionRate" oninput="calculate()" placeholder="הזן אחוז המרה">
-                </div>
-                <div class="input-group">
-                    <label>שולי רווח רצויים (%)</label>
-                    <input type="number" id="profitMargin" oninput="calculate()" placeholder="הזן שולי רווח">
-                </div>
-            </div>
+   <div class="container">
+       <h1>מחשבון ROI שיווק</h1>
+       <div class="grid">
+           <div class="inputs">
+               <div class="input-group">
+                   <label>יעד עסקאות</label>
+                   <input type="number" id="targetDeals" oninput="calculate()" placeholder="הזן יעד עסקאות">
+               </div>
+               <div class="input-group">
+                   <label>ממוצע הכנסה לעסקה (₪)</label>
+                   <input type="number" id="revenuePerDeal" oninput="calculate()" placeholder="הזן הכנסה ממוצעת">
+               </div>
+               <div class="input-group">
+                   <label>שולי רווח (%)</label>
+                   <input type="number" id="profitMargin" oninput="calculate()" placeholder="הזן שולי רווח">
+               </div>
+               <div class="input-group">
+                   <label>אחוז סגירה מליד (%)</label>
+                   <input type="number" id="conversionRate" oninput="calculate()" placeholder="הזן אחוז סגירה">
+               </div>
+               <div class="input-group">
+                   <label>עלות גיוס לקוח (₪)</label>
+                   <input type="number" id="customerAcquisitionCost" oninput="calculate()" placeholder="הזן עלות גיוס">
+               </div>
+           </div>
 
-            <div class="results">
-                <div class="results-grid">
-                    <div class="result-item">
-                        <div class="result-label">עלות ליד רצויה</div>
-                        <div class="result-value" id="maxLeadCost">₪0</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label">עלות מדיה נדרשת</div>
-                        <div class="result-value" id="mediaRequired">₪0</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label">עסקאות צפויות</div>
-                        <div class="result-value" id="dealsExpected">0</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label">עלות גיוס לקוח</div>
-                        <div class="result-value" id="costPerAcquisition">₪0</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label">מחזור צפוי</div>
-                        <div class="result-value" id="totalRevenue">₪0</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label">רווח צפוי</div>
-                        <div class="result-value" id="targetProfit">₪0</div>
-                    </div>
-                    <div class="result-item total-revenue">
-                        <div class="result-label">החזר השקעה</div>
-                        <div class="result-value" id="roi">0%</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+           <div class="results">
+               <div class="results-grid">
+                   <div class="result-item">
+                       <div class="result-label">כמות לידים נדרשת</div>
+                       <div class="result-value" id="requiredLeads">0</div>
+                   </div>
+                   <div class="result-item">
+                       <div class="result-label">עלות לליד</div>
+                       <div class="result-value" id="costPerLead">₪0</div>
+                   </div>
+                   <div class="result-item">
+                       <div class="result-label">עלות מדיה נדרשת</div>
+                       <div class="result-value" id="mediaRequired">₪0</div>
+                   </div>
+                   <div class="result-item">
+                       <div class="result-label">מחזור צפוי</div>
+                       <div class="result-value" id="expectedRevenue">₪0</div>
+                   </div>
+                   <div class="result-item">
+                       <div class="result-label">רווח צפוי</div>
+                       <div class="result-value" id="expectedProfit">₪0</div>
+                   </div>
+                   <div class="result-item total-revenue">
+                       <div class="result-label">החזר השקעה</div>
+                       <div class="result-value" id="roi">0%</div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-credit">נוצר ע״י דניאל ליבשיץ</div>
-            <div class="footer-cta">צריכים שירותי שיווק?</div>
-            <a href="https://wa.me/972502616188" class="whatsapp-button">
-                <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
-                </svg>
-                לחצו ונדבר
-            </a>
-        </div>
-    </footer>
+   <script>
+       function formatNumber(num) {
+           return new Intl.NumberFormat('he-IL', {
+               maximumFractionDigits: 0
+           }).format(num);
+       }
 
-    <script>
-        function formatNumber(num) {
-            return new Intl.NumberFormat('he-IL', {
-                maximumFractionDigits: 0
-            }).format(num);
-        }
+       function calculate() {
+           const targetDeals = parseFloat(document.getElementById('targetDeals').value) || 0;
+           const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
+           const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
+           const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
+           const customerAcquisitionCost = parseFloat(document.getElementById('customerAcquisitionCost').value) || 0;
 
-        function calculate() {
-            const leads = parseFloat(document.getElementById('numberOfLeads').value) || 0;
-            const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
-            const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
-            const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
+           const requiredLeads = conversionRate ? (targetDeals / (conversionRate / 100)) : 0;
+           const costPerLead = customerAcquisitionCost * (conversionRate / 100);
+           const mediaRequired = requiredLeads * costPerLead;
+           const expectedRevenue = targetDeals * revenuePerDeal;
+           const expectedProfit = expectedRevenue * (profitMargin / 100);
+           const roi = mediaRequired ? ((expectedProfit - mediaRequired) / mediaRequired) * 100 : 0;
 
-            const dealsExpected = leads * (conversionRate / 100);
-            const totalRevenue = dealsExpected * revenuePerDeal;
-            const targetProfit = totalRevenue * (profitMargin / 100);
-            const maxLeadCost = (revenuePerDeal * (conversionRate / 100) * (profitMargin / 100));
-            const mediaRequired = leads * maxLeadCost;
-            const costPerAcquisition = dealsExpected ? mediaRequired / dealsExpected : 0;
-            const roi = mediaRequired ? ((targetProfit - mediaRequired) / mediaRequired) * 100 : 0;
-
-            document.getElementById('maxLeadCost').textContent = '₪' + formatNumber(maxLeadCost);
-            document.getElementById('mediaRequired').textContent = '₪' + formatNumber(mediaRequired);
-            document.getElementById('dealsExpected').textContent = dealsExpected.toLocaleString('he-IL', {
-                minimumFractionDigits: 1,
-                maximumFractionDigits: 1
-            });
-            document.getElementById('costPerAcquisition').textContent = '₪' + formatNumber(costPerAcquisition);
-            document.getElementById('totalRevenue').textContent = '₪' + formatNumber(totalRevenue);
-            document.getElementById('targetProfit').textContent = '₪' + formatNumber(targetProfit);
-            document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
-                minimumFractionDigits: 1,
-                maximumFractionDigits: 1
-            }) + '%';
-        }
-
-        function downloadCalculator() {
-            const node = document.querySelector(".container");
-            
-            domtoimage.toJpeg(node, {
-                quality: 1.0,
-                bgcolor: '#ffffff'
-            })
-            .then(function (dataUrl) {
-                const link = document.createElement('a');
-                link.download = 'roi-calculator.jpg';
-                link.href = dataUrl;
-                link.click();
-            });
-        }
-    </script>
+           document.getElementById('requiredLeads').textContent = formatNumber(requiredLeads);
+           document.getElementById('costPerLead').textContent = '₪' + formatNumber(costPerLead);
+           document.getElementById('mediaRequired').textContent = '₪' + formatNumber(mediaRequired);
+           document.getElementById('expectedRevenue').textContent = '₪' + formatNumber(expectedRevenue);
+           document.getElementById('expectedProfit').textContent = '₪' + formatNumber(expectedProfit);
+           document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
+               minimumFractionDigits: 1,
+               maximumFractionDigits: 1
+           }) + '%';
+       }
+   </script>
 </body>
 </html>
