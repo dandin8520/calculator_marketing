@@ -7,70 +7,56 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/calculator.css">
     <link rel="stylesheet" href="css/footer.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>מחשבון ROI שיווק</h1>
         <div class="grid">
             <div class="inputs">
-                <!-- Add onchange and oninput directly to inputs -->
                 <div class="input-group">
-                    <label>מספר לידים</label>
+                    <label>מספר לידים רצוי</label>
                     <input type="number" id="numberOfLeads" oninput="calculate()" placeholder="הזן מספר לידים">
-                </div>
-                <div class="input-group">
-                    <label>עלות פר ליד (₪)</label>
-                    <input type="number" id="cpl" oninput="calculate()" placeholder="הזן עלות פר ליד">
                 </div>
                 <div class="input-group">
                     <label>הכנסה לעסקה (₪)</label>
                     <input type="number" id="revenuePerDeal" oninput="calculate()" placeholder="הזן הכנסה לעסקה">
                 </div>
                 <div class="input-group">
-                    <label>שולי רווח (%)</label>
-                    <input type="number" id="profitMargin" oninput="calculate()" placeholder="הזן שולי רווח">
-                </div>
-                <div class="input-group">
-                    <label>אחוז המרה מליד לסגירה (%)</label>
+                    <label>אחוז המרה מליד לעסקה (%)</label>
                     <input type="number" id="conversionRate" oninput="calculate()" placeholder="הזן אחוז המרה">
                 </div>
                 <div class="input-group">
-                    <label>עלות משווק (₪)</label>
-                    <input type="number" id="marketerFee" oninput="calculate()" placeholder="הזן עלות משווק">
+                    <label>שולי רווח רצויים (%)</label>
+                    <input type="number" id="profitMargin" oninput="calculate()" placeholder="הזן שולי רווח">
                 </div>
             </div>
 
             <div class="results">
                 <div class="results-grid">
                     <div class="result-item">
-                        <div class="result-label">הוצאות מדיה</div>
-                        <div class="result-value" id="mediaSpend">₪0</div>
+                        <div class="result-label">עלות ליד רצויה</div>
+                        <div class="result-value" id="maxLeadCost">₪0</div>
                     </div>
                     <div class="result-item">
-                        <div class="result-label">עלות משווק</div>
-                        <div class="result-value" id="marketerFeeResult">₪0</div>
+                        <div class="result-label">עלות מדיה נדרשת</div>
+                        <div class="result-value" id="mediaRequired">₪0</div>
                     </div>
                     <div class="result-item">
-                        <div class="result-label">סך עלויות</div>
-                        <div class="result-value" id="totalCost">₪0</div>
+                        <div class="result-label">עסקאות צפויות</div>
+                        <div class="result-value" id="dealsExpected">0</div>
                     </div>
                     <div class="result-item">
-                        <div class="result-label">עסקאות שנסגרו</div>
-                        <div class="result-value" id="dealsClose">0</div>
+                        <div class="result-label">עלות גיוס לקוח</div>
+                        <div class="result-value" id="costPerAcquisition">₪0</div>
                     </div>
                     <div class="result-item">
-                        <div class="result-label">עלות פר עסקה</div>
-                        <div class="result-value" id="costPerDeal">₪0</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label">סך הכנסות</div>
+                        <div class="result-label">מחזור צפוי</div>
                         <div class="result-value" id="totalRevenue">₪0</div>
                     </div>
                     <div class="result-item">
-                        <div class="result-label">הכנסה נטו</div>
-                        <div class="result-value" id="netRevenue">₪0</div>
+                        <div class="result-label">רווח צפוי</div>
+                        <div class="result-value" id="targetProfit">₪0</div>
                     </div>
                     <div class="result-item total-revenue">
                         <div class="result-label">החזר השקעה</div>
@@ -79,15 +65,13 @@
                 </div>
             </div>
         </div>
-            <button class="download-button" onclick="downloadCalculator()">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
-    </svg>
-    ש1111מור תמונה
-</button>
+        <button class="download-button" onclick="downloadCalculator()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+            </svg>
+            שמור תמונה
+        </button>
     </div>
-
-
 
     <footer class="footer">
         <div class="footer-content">
@@ -101,7 +85,8 @@
             </a>
         </div>
     </footer>
-  <script>
+
+    <script>
         function formatNumber(num) {
             return new Intl.NumberFormat('he-IL', {
                 maximumFractionDigits: 0
@@ -109,53 +94,48 @@
         }
 
         function calculate() {
-            // Get input values
             const leads = parseFloat(document.getElementById('numberOfLeads').value) || 0;
-            const cpl = parseFloat(document.getElementById('cpl').value) || 0;
             const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
-            const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
             const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
-            const marketerFee = parseFloat(document.getElementById('marketerFee').value) || 0;
+            const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
 
-            // Calculate metrics
-            const mediaSpend = leads * cpl;
-            const dealsClose = Number((leads * (conversionRate / 100)).toFixed(1));
-            const totalCost = mediaSpend + marketerFee;
-            const costPerDeal = dealsClose ? Math.round(totalCost / dealsClose) : 0;
-            const totalRevenue = dealsClose * revenuePerDeal;
-            const netRevenue = totalRevenue * (profitMargin / 100);
-            const roi = totalCost ? ((netRevenue - totalCost) / totalCost) * 100 : 0;
+            const dealsExpected = leads * (conversionRate / 100);
+            const totalRevenue = dealsExpected * revenuePerDeal;
+            const targetProfit = totalRevenue * (profitMargin / 100);
+            const maxLeadCost = (revenuePerDeal * (conversionRate / 100) * (profitMargin / 100));
+            const mediaRequired = leads * maxLeadCost;
+            const costPerAcquisition = dealsExpected ? mediaRequired / dealsExpected : 0;
+            const roi = mediaRequired ? ((targetProfit - mediaRequired) / mediaRequired) * 100 : 0;
 
-            // Update UI
-            document.getElementById('mediaSpend').textContent = '₪' + formatNumber(mediaSpend);
-            document.getElementById('marketerFeeResult').textContent = '₪' + formatNumber(marketerFee);
-            document.getElementById('totalCost').textContent = '₪' + formatNumber(totalCost);
-            document.getElementById('dealsClose').textContent = dealsClose.toLocaleString('he-IL', {
+            document.getElementById('maxLeadCost').textContent = '₪' + formatNumber(maxLeadCost);
+            document.getElementById('mediaRequired').textContent = '₪' + formatNumber(mediaRequired);
+            document.getElementById('dealsExpected').textContent = dealsExpected.toLocaleString('he-IL', {
                 minimumFractionDigits: 1,
                 maximumFractionDigits: 1
             });
-            document.getElementById('costPerDeal').textContent = '₪' + formatNumber(costPerDeal);
+            document.getElementById('costPerAcquisition').textContent = '₪' + formatNumber(costPerAcquisition);
             document.getElementById('totalRevenue').textContent = '₪' + formatNumber(totalRevenue);
-            document.getElementById('netRevenue').textContent = '₪' + formatNumber(netRevenue);
+            document.getElementById('targetProfit').textContent = '₪' + formatNumber(targetProfit);
             document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
                 minimumFractionDigits: 1,
                 maximumFractionDigits: 1
             }) + '%';
         }
-function downloadCalculator() {
-   const node = document.querySelector(".container");
-   
-   domtoimage.toJpeg(node, {
-       quality: 1.0,
-       bgcolor: '#ffffff'
-   })
-   .then(function (dataUrl) {
-       const link = document.createElement('a');
-       link.download = 'roi-calculator.jpg';
-       link.href = dataUrl;
-       link.click();
-   });
-}
+
+        function downloadCalculator() {
+            const node = document.querySelector(".container");
+            
+            domtoimage.toJpeg(node, {
+                quality: 1.0,
+                bgcolor: '#ffffff'
+            })
+            .then(function (dataUrl) {
+                const link = document.createElement('a');
+                link.download = 'roi-calculator.jpg';
+                link.href = dataUrl;
+                link.click();
+            });
+        }
     </script>
 </body>
 </html>
