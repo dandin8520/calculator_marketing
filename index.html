@@ -271,7 +271,7 @@ function calculate() {
     const mediaRequired = requiredLeads * costPerLead;
     const expectedRevenue = targetDeals * revenuePerDeal;
     const expectedProfit = expectedRevenue * (profitMargin / 100)-mediaRequired;
-    const roi = mediaRequired ? ((expectedProfit - mediaRequired) / mediaRequired) * 100 : 0;
+    const roi = mediaRequired ? ((expectedProfit / mediaRequired) * 100 : 0;
     const acquisitionCostPercentage = expectedProfit ? (mediaRequired / expectedProfit) * 100 : 0;
 
     document.getElementById('requiredLeads').textContent = formatNumber(requiredLeads);
