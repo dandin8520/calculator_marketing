@@ -1,5 +1,3 @@
-
-
 .dictionary-2025 h2 {
     font-size: 2rem;
     font-weight: 700;
@@ -94,6 +92,7 @@
     font-size: 0.875rem;
 }
 
+/* Tabs */
 .tab-container {
     margin-bottom: 2rem;
     direction: rtl;
@@ -146,21 +145,8 @@
     border-radius: 2px;
 }
 
+/* Mobile Responsive */
 @media (max-width: 768px) {
-    .tab-button.active::after {
-        display: none;
-    }
-    .tab-button.active {
-        transform: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .dictionary-2025 {
-        padding: 1rem;
-        margin-top: 2rem;
-    }
-
     .dictionary-2025 h2 {
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
