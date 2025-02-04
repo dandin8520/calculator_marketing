@@ -1,326 +1,334 @@
 <!DOCTYPE html>
 <html dir="rtl">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>מחשבון שיווק</title>
-   <link rel="stylesheet" href="css/main.css">
-   <link rel="stylesheet" href="css/calculator.css">
-   <link rel="stylesheet" href="css/dictionary.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחשבון שיווק</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/calculator.css">
+    <link rel="stylesheet" href="css/dictionary.css">
     <link rel="stylesheet" href="css/cta.css">
 </head>
 <body>
-   <div class="container">
-       <h1>מחשבון שיווק</h1>
-          <p class="subtitle">גלה כמה לידים ותקציב שיווק אתה צריך כדי להגיע ליעד העסקאות שלך. הזן את הנתונים הבאים ותקבל תוצאה מדויקת:</p>
+    <div class="main-wrapper">
+        <!-- Calculator Section -->
+        <div class="calculator-section">
+            <div class="container">
+                <h1>מחשבון שיווק</h1>
+                <p class="subtitle">גלה כמה לידים ותקציב שיווק אתה צריך כדי להגיע ליעד העסקאות שלך. הזן את הנתונים הבאים ותקבל תוצאה מדויקת:</p>
 
-       <div class="grid">
-           <div class="inputs">
-               <div class="input-group">
-                   <label>יעד עסקאות</label>
-                   <input type="number" id="targetDeals" oninput="calculate()" placeholder="הזן יעד עסקאות">
-               </div>
-               <div class="input-group">
-                   <label>ממוצע הכנסה לעסקה (₪)</label>
-                   <input type="number" id="revenuePerDeal" oninput="calculate()" placeholder="הזן הכנסה ממוצעת">
-               </div>
-               <div class="input-group">
-                   <label>שולי רווח (%)</label>
-                   <input type="number" id="profitMargin" oninput="calculate()" placeholder="הזן שולי רווח">
-               </div>
-               <div class="input-group">
-                   <label>אחוז סגירה מליד (%)</label>
-                   <input type="number" id="conversionRate" oninput="calculate()" placeholder="הזן אחוז סגירה">
-               </div>
-               <div class="input-group">
-                   <label>עלות גיוס לקוח (₪)</label>
-                   <input type="number" id="customerAcquisitionCost" oninput="calculate()" placeholder="הזן עלות גיוס">
-               </div>
-           </div>
+                <div class="grid">
+                    <div class="inputs">
+                        <div class="input-group">
+                            <label>יעד עסקאות</label>
+                            <input type="number" id="targetDeals" oninput="calculate()" placeholder="הזן יעד עסקאות">
+                        </div>
+                        <div class="input-group">
+                            <label>ממוצע הכנסה לעסקה (₪)</label>
+                            <input type="number" id="revenuePerDeal" oninput="calculate()" placeholder="הזן הכנסה ממוצעת">
+                        </div>
+                        <div class="input-group">
+                            <label>שולי רווח (%)</label>
+                            <input type="number" id="profitMargin" oninput="calculate()" placeholder="הזן שולי רווח">
+                        </div>
+                        <div class="input-group">
+                            <label>אחוז סגירה מליד (%)</label>
+                            <input type="number" id="conversionRate" oninput="calculate()" placeholder="הזן אחוז סגירה">
+                        </div>
+                        <div class="input-group">
+                            <label>עלות גיוס לקוח (₪)</label>
+                            <input type="number" id="customerAcquisitionCost" oninput="calculate()" placeholder="הזן עלות גיוס">
+                        </div>
+                    </div>
 
-           <div class="results">
-               <div class="results-grid">
-                   <div class="result-item">
-                       <div class="result-label">כמות לידים נדרשת</div>
-                       <div class="result-value" id="requiredLeads">0</div>
-                   </div>
-                   <div class="result-item">
-                       <div class="result-label">עלות לליד</div>
-                       <div class="result-value" id="costPerLead">₪0</div>
-                   </div>
-                   <div class="result-item">
-                       <div class="result-label">עלות מדיה נדרשת</div>
-                       <div class="result-value" id="mediaRequired">₪0</div>
-                   </div>
-                   <div class="result-item">
-                       <div class="result-label">מחזור צפוי</div>
-                       <div class="result-value" id="expectedRevenue">₪0</div>
-                   </div>
-                  <div class="result-item">
-   <div class="result-label">אחוז עלות גיוס מהרווח</div>
-   <div class="result-value" id="acquisitionCostPercentage">0%</div>
-</div>
-                   <div class="result-item">
-                       <div class="result-label">רווח צפוי</div>
-                       <div class="result-value" id="expectedProfit">₪0</div>
-                   </div>
-                   <div class="result-item total-revenue">
-                       <div class="result-label">החזר השקעה</div>
-                       <div class="result-value" id="roi">0%</div>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
+                    <div class="results">
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-label">כמות לידים נדרשת</div>
+                                <div class="result-value" id="requiredLeads">0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">עלות לליד</div>
+                                <div class="result-value" id="costPerLead">₪0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">עלות מדיה נדרשת</div>
+                                <div class="result-value" id="mediaRequired">₪0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">מחזור צפוי</div>
+                                <div class="result-value" id="expectedRevenue">₪0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">אחוז עלות גיוס מהרווח</div>
+                                <div class="result-value" id="acquisitionCostPercentage">0%</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">רווח צפוי</div>
+                                <div class="result-value" id="expectedProfit">₪0</div>
+                            </div>
+                            <div class="result-item total-revenue">
+                                <div class="result-label">החזר השקעה</div>
+                                <div class="result-value" id="roi">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="dictionary-2025">
-    <h2>מילון מונחים והסברים</h2>
-    
-    <div class="tab-container">
-        <div class="tab-buttons">
-            <button class="tab-button" data-tab="input" onclick="showTab('input')">מדדי קלט</button>
-<button class="tab-button" data-tab="output" onclick="showTab('output')">מדדי תוצאה</button>
+        <!-- Dictionary Section -->
+        <div class="dictionary-section">
+            <div class="dictionary-2025">
+                <h2>מילון מונחים והסברים</h2>
+                
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-button" data-tab="input" onclick="showTab('input')">מדדי קלט</button>
+                        <button class="tab-button" data-tab="output" onclick="showTab('output')">מדדי תוצאה</button>
+                    </div>
+                </div>
+
+                <div id="input-terms" class="terms-grid">
+                    <div class="term-card">
+                        <div class="term-type">מדד קלט</div>
+                        <div class="term-header">יעד עסקאות</div>
+                        <div class="term-description">
+                            כמות העסקאות שאתה מעוניין להשיג בתקופה מסוימת. מדד זה מהווה את הבסיס לכל החישובים העתידיים.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד קלט</div>
+                        <div class="term-header">ממוצע הכנסה לעסקה</div>
+                        <div class="term-description">
+                            ההכנסה הממוצעת בש"ח מכל עסקה שנסגרת. משקף את הערך הכספי של כל לקוח שמצטרף.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד קלט</div>
+                        <div class="term-header">שולי רווח</div>
+                        <div class="term-description">
+                            אחוז הרווח הנקי מכל עסקה לאחר הורדת כל ההוצאות. מאפשר להבין את הרווחיות האמיתית.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד קלט</div>
+                        <div class="term-header">אחוז סגירה מליד</div>
+                        <div class="term-description">
+                            האחוז מתוך הלידים שהופכים לעסקאות בפועל. משקף את איכות הלידים ויעילות תהליך המכירה.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד קלט</div>
+                        <div class="term-header">עלות גיוס לקוח</div>
+                        <div class="term-description">
+                            העלות הממוצעת בש"ח להשגת לקוח חדש. כולל את כל עלויות השיווק והמכירה.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="output-terms" class="terms-grid" style="display: none;">
+                    <div class="term-card">
+                        <div class="term-type">מדד תוצאה</div>
+                        <div class="term-header">כמות לידים נדרשת</div>
+                        <div class="term-description">
+                            מספר הלידים שיש להשיג כדי להגיע ליעד העסקאות המבוקש
+                        </div>
+                        <div class="term-formula">
+                            יעד עסקאות / (אחוז סגירה / 100)
+                        </div>
+                        <div class="term-impacts">
+                            <div class="term-impacts-title">מושפע מ:</div>
+                            <div class="impact-tags">
+                                <span class="impact-tag">יעד עסקאות</span>
+                                <span class="impact-tag">אחוז סגירה</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד תוצאה</div>
+                        <div class="term-header">עלות לליד</div>
+                        <div class="term-description">
+                            העלות הממוצעת להשגת ליד אחד
+                        </div>
+                        <div class="term-formula">
+                            עלות גיוס לקוח × (אחוז סגירה / 100)
+                        </div>
+                        <div class="term-impacts">
+                            <div class="term-impacts-title">מושפע מ:</div>
+                            <div class="impact-tags">
+                                <span class="impact-tag">עלות גיוס לקוח</span>
+                                <span class="impact-tag">אחוז סגירה</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד תוצאה</div>
+                        <div class="term-header">עלות מדיה נדרשת</div>
+                        <div class="term-description">
+                            סך ההשקעה הכוללת הנדרשת בפרסום
+                        </div>
+                        <div class="term-formula">
+                            כמות לידים נדרשת × עלות לליד
+                        </div>
+                        <div class="term-impacts">
+                            <div class="term-impacts-title">מושפע מ:</div>
+                            <div class="impact-tags">
+                                <span class="impact-tag">כמות לידים</span>
+                                <span class="impact-tag">עלות לליד</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד תוצאה</div>
+                        <div class="term-header">מחזור צפוי</div>
+                        <div class="term-description">
+                            סך כל ההכנסות הצפויות מהעסקאות
+                        </div>
+                        <div class="term-formula">
+                            יעד עסקאות × ממוצע הכנסה לעסקה
+                        </div>
+                        <div class="term-impacts">
+                            <div class="term-impacts-title">מושפע מ:</div>
+                            <div class="impact-tags">
+                                <span class="impact-tag">יעד עסקאות</span>
+                                <span class="impact-tag">הכנסה לעסקה</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד תוצאה</div>
+                        <div class="term-header">אחוז עלות גיוס לקוח מהרווח</div>
+                        <div class="term-description">
+                            החלק היחסי של עלויות הגיוס מתוך הרווח הכולל
+                        </div>
+                        <div class="term-formula">
+                            (עלות מדיה נדרשת / רווח צפוי) × 100
+                        </div>
+                        <div class="term-impacts">
+                            <div class="term-impacts-title">מושפע מ:</div>
+                            <div class="impact-tags">
+                                <span class="impact-tag">עלות מדיה</span>
+                                <span class="impact-tag">רווח צפוי</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד תוצאה</div>
+                        <div class="term-header">רווח צפוי</div>
+                        <div class="term-description">
+                            הרווח הנקי הצפוי לאחר כל ההוצאות
+                        </div>
+                        <div class="term-formula">
+                            מחזור צפוי × (שולי רווח / 100)
+                        </div>
+                        <div class="term-impacts">
+                            <div class="term-impacts-title">מושפע מ:</div>
+                            <div class="impact-tags">
+                                <span class="impact-tag">מחזור צפוי</span>
+                                <span class="impact-tag">שולי רווח</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-type">מדד תוצאה</div>
+                        <div class="term-header">החזר השקעה (ROI)</div>
+                        <div class="term-description">
+                            אחוז התשואה על ההשקעה בשיווק
+                        </div>
+                        <div class="term-formula">
+                            ((רווח צפוי - עלות מדיה) / עלות מדיה) × 100
+                        </div>
+                        <div class="term-impacts">
+                            <div class="term-impacts-title">מושפע מ:</div>
+                            <div class="impact-tags">
+                                <span class="impact-tag">רווח צפוי</span>
+                                <span class="impact-tag">עלות מדיה</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div class="contact-section-2025">
+                <h2>רוצה להביא לידים שסוגרים יותר עסקאות?</h2>
+                <a href="https://wa.me/972502616188" class="contact-button">
+                    <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    שלח הודעה בוואטסאפ
+                </a>
+            </div>
         </div>
     </div>
 
-    <div id="input-terms" class="terms-grid">
-        <div class="term-card">
-            <div class="term-type">מדד קלט</div>
-            <div class="term-header">יעד עסקאות</div>
-            <div class="term-description">
-                כמות העסקאות שאתה מעוניין להשיג בתקופה מסוימת. מדד זה מהווה את הבסיס לכל החישובים העתידיים.
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד קלט</div>
-            <div class="term-header">ממוצע הכנסה לעסקה</div>
-            <div class="term-description">
-                ההכנסה הממוצעת בש"ח מכל עסקה שנסגרת. משקף את הערך הכספי של כל לקוח שמצטרף.
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד קלט</div>
-            <div class="term-header">שולי רווח</div>
-            <div class="term-description">
-                אחוז הרווח הנקי מכל עסקה לאחר הורדת כל ההוצאות. מאפשר להבין את הרווחיות האמיתית.
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד קלט</div>
-            <div class="term-header">אחוז סגירה מליד</div>
-            <div class="term-description">
-                האחוז מתוך הלידים שהופכים לעסקאות בפועל. משקף את איכות הלידים ויעילות תהליך המכירה.
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד קלט</div>
-            <div class="term-header">עלות גיוס לקוח</div>
-            <div class="term-description">
-                העלות הממוצעת בש"ח להשגת לקוח חדש. כולל את כל עלויות השיווק והמכירה.
-            </div>
-        </div>
-    </div>
-
-    <div id="output-terms" class="terms-grid" style="display: none;">
-        <div class="term-card">
-            <div class="term-type">מדד תוצאה</div>
-            <div class="term-header">כמות לידים נדרשת</div>
-            <div class="term-description">
-                מספר הלידים שיש להשיג כדי להגיע ליעד העסקאות המבוקש
-            </div>
-            <div class="term-formula">
-                יעד עסקאות / (אחוז סגירה / 100)
-            </div>
-            <div class="term-impacts">
-                <div class="term-impacts-title">מושפע מ:</div>
-                <div class="impact-tags">
-                    <span class="impact-tag">יעד עסקאות</span>
-                    <span class="impact-tag">אחוז סגירה</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד תוצאה</div>
-            <div class="term-header">עלות לליד</div>
-            <div class="term-description">
-                העלות הממוצעת להשגת ליד אחד
-            </div>
-            <div class="term-formula">
-                עלות גיוס לקוח × (אחוז סגירה / 100)
-            </div>
-            <div class="term-impacts">
-                <div class="term-impacts-title">מושפע מ:</div>
-                <div class="impact-tags">
-                    <span class="impact-tag">עלות גיוס לקוח</span>
-                    <span class="impact-tag">אחוז סגירה</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד תוצאה</div>
-            <div class="term-header">עלות מדיה נדרשת</div>
-            <div class="term-description">
-                סך ההשקעה הכוללת הנדרשת בפרסום
-            </div>
-            <div class="term-formula">
-                כמות לידים נדרשת × עלות לליד
-            </div>
-            <div class="term-impacts">
-                <div class="term-impacts-title">מושפע מ:</div>
-                <div class="impact-tags">
-                    <span class="impact-tag">כמות לידים</span>
-                    <span class="impact-tag">עלות לליד</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד תוצאה</div>
-            <div class="term-header">מחזור צפוי</div>
-            <div class="term-description">
-                סך כל ההכנסות הצפויות מהעסקאות
-            </div>
-            <div class="term-formula">
-                יעד עסקאות × ממוצע הכנסה לעסקה
-            </div>
-            <div class="term-impacts">
-                <div class="term-impacts-title">מושפע מ:</div>
-                <div class="impact-tags">
-                    <span class="impact-tag">יעד עסקאות</span>
-                    <span class="impact-tag">הכנסה לעסקה</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד תוצאה</div>
-            <div class="term-header">אחוז עלות גיוס לקוח מהרווח</div>
-            <div class="term-description">
-                החלק היחסי של עלויות הגיוס מתוך הרווח הכולל
-            </div>
-            <div class="term-formula">
-                (עלות מדיה נדרשת / רווח צפוי) × 100
-            </div>
-            <div class="term-impacts">
-                <div class="term-impacts-title">מושפע מ:</div>
-                <div class="impact-tags">
-                    <span class="impact-tag">עלות מדיה</span>
-                    <span class="impact-tag">רווח צפוי</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד תוצאה</div>
-            <div class="term-header">רווח צפוי</div>
-            <div class="term-description">
-                הרווח הנקי הצפוי לאחר כל ההוצאות
-            </div>
-            <div class="term-formula">
-                מחזור צפוי × (שולי רווח / 100)
-            </div>
-            <div class="term-impacts">
-                <div class="term-impacts-title">מושפע מ:</div>
-                <div class="impact-tags">
-                    <span class="impact-tag">מחזור צפוי</span>
-                    <span class="impact-tag">שולי רווח</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="term-card">
-            <div class="term-type">מדד תוצאה</div>
-            <div class="term-header">החזר השקעה (ROI)</div>
-            <div class="term-description">
-                אחוז התשואה על ההשקעה בשיווק
-            </div>
-            <div class="term-formula">
-                ((רווח צפוי - עלות מדיה) / עלות מדיה) × 100
-            </div>
-            <div class="term-impacts">
-                <div class="term-impacts-title">מושפע מ:</div>
-                <div class="impact-tags">
-                    <span class="impact-tag">רווח צפוי</span>
-                    <span class="impact-tag">עלות מדיה</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-   <div class="contact-section-2025">
-    <h2>רוצה להביא לידים שסוגרים יותר עסקאות?</h2>
-    <a href="https://wa.me/972502616188" class="contact-button">
-        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        שלח הודעה בוואטסאפ
-    </a>
-</div>
-
-      <script>
-       function formatNumber(num) {
-           return new Intl.NumberFormat('he-IL', {
-               maximumFractionDigits: 0
-           }).format(num);
-       }
-
-function calculate() {
-    const targetDeals = parseFloat(document.getElementById('targetDeals').value) || 0;
-    const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
-    const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
-    const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
-    const customerAcquisitionCost = parseFloat(document.getElementById('customerAcquisitionCost').value) || 0;
-
-    const requiredLeads = conversionRate ? (targetDeals / (conversionRate / 100)) : 0;
-    const costPerLead = customerAcquisitionCost * (conversionRate / 100);
-    const mediaRequired = requiredLeads * costPerLead;
-    const expectedRevenue = targetDeals * revenuePerDeal;
-    const expectedProfit = expectedRevenue * (profitMargin / 100)-mediaRequired;
-    const roi = mediaRequired ? (expectedProfit / mediaRequired) * 100 : 0;
-    const acquisitionCostPercentage = expectedProfit ? (mediaRequired / expectedProfit) * 100 : 0;
-
-    document.getElementById('requiredLeads').textContent = formatNumber(requiredLeads);
-    document.getElementById('costPerLead').textContent = '₪' + formatNumber(costPerLead);
-    document.getElementById('mediaRequired').textContent = '₪' + formatNumber(mediaRequired);
-    document.getElementById('expectedRevenue').textContent = '₪' + formatNumber(expectedRevenue);
-    document.getElementById('expectedProfit').textContent = '₪' + formatNumber(expectedProfit);
-    document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
-        minimumFractionDigits: 1,
-        maximumFractionDigits: 1
-    }) + '%';
-    document.getElementById('acquisitionCostPercentage').textContent = acquisitionCostPercentage.toLocaleString('he-IL', {
-        minimumFractionDigits: 1,
-        maximumFractionDigits: 1
-    }) + '%';
-}
-
- function showTab(tabName) {
-    // Hide all term sections
-    document.getElementById('input-terms').style.display = 'none';
-    document.getElementById('output-terms').style.display = 'none';
-    
-    // Show selected tab
-    document.getElementById(tabName + '-terms').style.display = 'grid';
-    
-    // Update button states using data attributes
-    const buttons = document.querySelectorAll('.tab-button');
-    buttons.forEach(button => {
-        button.classList.remove('active');
-        if (button.dataset.tab === tabName) {
-            button.classList.add('active');
+    <script>
+        function formatNumber(num) {
+            return new Intl.NumberFormat('he-IL', {
+                maximumFractionDigits: 0
+            }).format(num);
         }
-    });
-}
-   </script>
 
+        function calculate() {
+            const targetDeals = parseFloat(document.getElementById('targetDeals').value) || 0;
+            const revenuePerDeal = parseFloat(document.getElementById('revenuePerDeal').value) || 0;
+            const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
+            const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
+            const customerAcquisitionCost = parseFloat(document.getElementById('customerAcquisitionCost').value) || 0;
 
-   
+            const requiredLeads = conversionRate ? (targetDeals / (conversionRate / 100)) : 0;
+            const costPerLead = customerAcquisitionCost * (conversionRate / 100);
+            const mediaRequired = requiredLeads * costPerLead;
+            const expectedRevenue = targetDeals * revenuePerDeal;
+            const expectedProfit = expectedRevenue * (profitMargin / 100)-mediaRequired;
+            const roi = mediaRequired ? (expectedProfit / mediaRequired) * 100 : 0;
+            const acquisitionCostPercentage = expectedProfit ? (mediaRequired / expectedProfit) * 100 : 0;
+
+            document.getElementById('requiredLeads').textContent = formatNumber(requiredLeads);
+            document.getElementById('costPerLead').textContent = '₪' + formatNumber(costPerLead);
+            document.getElementById('mediaRequired').textContent = '₪' + formatNumber(mediaRequired);
+            document.getElementById('expectedRevenue').textContent = '₪' + formatNumber(expectedRevenue);
+            document.getElementById('expectedProfit').textContent = '₪' + formatNumber(expectedProfit);
+            document.getElementById('roi').textContent = roi.toLocaleString('he-IL', {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
+            }) + '%';
+            document.getElementById('acquisitionCostPercentage').textContent = acquisitionCostPercentage.toLocaleString('he-IL', {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
+            }) + '%';
+        }
+
+        function showTab(tabName) {
+            // Hide all term sections
+            document.getElementById('input-terms').style.display = 'none';
+            document.getElementById('output-terms').style.display = 'none';
+            
+            // Show selected tab
+            document.getElementById(tabName + '-terms').style.display = 'grid';
+            
+            // Update button states using data attributes
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+                if (button.dataset.tab === tabName) {
+                    button.classList.add('active');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
