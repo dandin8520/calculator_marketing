@@ -36,6 +36,7 @@
         padding: 0.75rem;
         font-size: 0.95rem;
         gap: 8px;
+        max-width: 80%;
         margin: 0.5rem auto;
     }
 
