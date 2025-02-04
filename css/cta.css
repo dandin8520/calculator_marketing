@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    background: #6366f1; /* Indigo color from the image */
+    background: #6366f1;
     color: white;
     width: 100%;
     padding: 0.875rem;
@@ -33,10 +33,10 @@
 
 @media (max-width: 768px) {
     .contact-button {
+        width: 80%;
         padding: 0.75rem;
         font-size: 0.95rem;
         gap: 8px;
-        max-width: 80%;
         margin: 0.5rem auto;
     }
 
@@ -46,9 +46,9 @@
     }
 }
 
-/* Handle even smaller screens */
 @media (max-width: 480px) {
     .contact-button {
+        width: 80%;
         padding: 0.75rem 1rem;
         margin: 0.25rem auto;
     }
