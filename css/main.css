@@ -34,22 +34,9 @@ body {
 
 /* Typography */
 h1, h2 {
-    margin: 0 0 32px 0;
     color: #0f172a;
     font-weight: 700;
     letter-spacing: -0.5px;
-    text-align: center;
-}
-
-h1 {
-    font-size: 1.75rem;
-}
-
-.subtitle {
-    color: #666;
-    font-size: 14px;
-    margin: -20px 0 50px 0;
-    line-height: 1.4;
     text-align: center;
 }
 
@@ -59,25 +46,11 @@ h1 {
         padding: 16px;
     }
 
-    .main-wrapper {
-        padding: 0 1rem;
-    }
-
     .container,
     .dictionary-2025,
     .contact-section-2025 {
         padding: 20px;
-        margin-bottom: 1rem;
     }
-}
-
-/* Utility Classes */
-.text-right {
-    text-align: right;
-}
-
-.w-full {
-    width: 100%;
 }
 
 /* Print styles */
