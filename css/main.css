@@ -31,8 +31,9 @@ h1 {
 .subtitle {
     color: #666;
     font-size: 14px;
-    margin: 8px 0 24px 0;
+    margin: -20px 0 24px 0;
     line-height: 1.4;
+    text-align: center;
 }
 
 /* Grid Layout */
