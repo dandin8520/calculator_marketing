@@ -39,7 +39,7 @@
     text-decoration: none;
     box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
     margin: 0 auto;
-    max-width: 100%;
+    max-width: 60%;
 }
 
 .contact-button:hover {
