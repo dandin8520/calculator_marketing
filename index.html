@@ -291,15 +291,19 @@ function calculate() {
     }) + '%';
 }
 
-      function showTab(tabName) {
+ function showTab(tabName) {
+    // Hide all term sections
     document.getElementById('input-terms').style.display = 'none';
     document.getElementById('output-terms').style.display = 'none';
+    
+    // Show selected tab
     document.getElementById(tabName + '-terms').style.display = 'grid';
     
+    // Update button states using data attributes
     const buttons = document.querySelectorAll('.tab-button');
     buttons.forEach(button => {
         button.classList.remove('active');
-        if (button.textContent.toLowerCase().includes(tabName)) {
+        if (button.dataset.tab === tabName) {
             button.classList.add('active');
         }
     });
