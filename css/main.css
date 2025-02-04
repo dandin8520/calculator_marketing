@@ -49,7 +49,7 @@ h1, h2 {
     }
 
     .main-wrapper {
-        width: calc(100% - 32px); /* Accounting for smaller body padding */
+        width: calc(100% - 16px); /* Accounting for smaller body padding */
     }
 
     .container,
