@@ -8,15 +8,37 @@
     <link rel="stylesheet" href="css/calculator.css">
     <link rel="stylesheet" href="css/dictionary.css">
     <link rel="stylesheet" href="css/cta.css">
+    <link rel="stylesheet" href="css/video_instructions.css">
 </head>
 <body>
     <div class="main-wrapper">
+    <!-- Video Button -->
+<div class="video-section">
+    <button id="openVideoBtn" class="video-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+        </svg>
+        צפה בסרטון הדרכה
+    </button>
+</div>
+
+<div id="videoPopup" class="video-popup">
+    <div class="video-popup-content">
+        <button id="closeVideoBtn" class="close-button">&times;</button>
+        <div class="video-container">
+            <iframe id="videoFrame" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+        
         <!-- Calculator Section -->
         <div class="calculator-section">
             <div class="container">
                 <h1>מחשבון שיווק</h1>
                 <p class="subtitle">גלה כמה לידים ותקציב שיווק אתה צריך כדי להגיע ליעד העסקאות שלך. הזן את הנתונים הבאים ותקבל תוצאה מדויקת:</p>
-
+                    
                 <div class="grid">
                     <div class="inputs">
                         <div class="input-group">
@@ -330,5 +352,34 @@
             });
         }
     </script>
+
+<script>
+const openVideoBtn = document.getElementById('openVideoBtn');
+const closeVideoBtn = document.getElementById('closeVideoBtn');
+const videoPopup = document.getElementById('videoPopup');
+const videoFrame = document.getElementById('videoFrame');
+const videoUrl = 'YOUR_VIDEO_URL_HERE'; // Replace with your video URL
+
+openVideoBtn.addEventListener('click', () => {
+    videoFrame.src = videoUrl;
+    videoPopup.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+});
+
+closeVideoBtn.addEventListener('click', () => {
+    videoFrame.src = '';
+    videoPopup.style.display = 'none';
+    document.body.style.overflow = 'auto';
+});
+
+videoPopup.addEventListener('click', (e) => {
+    if (e.target === videoPopup) {
+        videoFrame.src = '';
+        videoPopup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
+</script>
+    
 </body>
 </html>
