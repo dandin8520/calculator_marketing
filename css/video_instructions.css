@@ -2,10 +2,12 @@
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
     background: #2563eb;
     color: white;
     z-index: 1000;
+    height: 48px;
 }
 
 .video-toggle {
@@ -13,9 +15,11 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px;
+    height: 100%;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-weight: bold;
+    font-size: 16px; /* Assuming original was 14px, increased by 2px */
 }
 
 .video-toggle:hover {
