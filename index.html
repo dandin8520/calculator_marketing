@@ -11,16 +11,15 @@
     <link rel="stylesheet" href="css/video_instructions.css">
 </head>
 <body>
-    <div class="main-wrapper">
-    <!-- Video Button -->
-<div class="video-section">
-    <button id="openVideoBtn" class="video-button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+<div class="sticky-video-header">
+    <div id="videoToggle" class="video-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <circle cx="12" cy="12" r="10"></circle>
             <polygon points="10 8 16 12 10 16 10 8"></polygon>
         </svg>
         צפה בסרטון הדרכה
-    </button>
+    </div>
 </div>
 
 <div id="videoPopup" class="video-popup">
@@ -32,6 +31,8 @@
     </div>
 </div>
 
+    
+    <div class="main-wrapper">
         
         <!-- Calculator Section -->
         <div class="calculator-section">
@@ -354,13 +355,13 @@
     </script>
 
 <script>
-const openVideoBtn = document.getElementById('openVideoBtn');
+const videoToggle = document.getElementById('videoToggle');
 const closeVideoBtn = document.getElementById('closeVideoBtn');
 const videoPopup = document.getElementById('videoPopup');
 const videoFrame = document.getElementById('videoFrame');
-const videoUrl = 'https://dkarka.co.il/wp-content/uploads/2024/05/ELI-FINAL-7.5.mp4'; // Replace with your video URL
+const videoUrl = 'https://dkarka.co.il/wp-content/uploads/2024/05/ELI-FINAL-7.5.mp4';
 
-openVideoBtn.addEventListener('click', () => {
+videoToggle.addEventListener('click', () => {
     videoFrame.src = videoUrl;
     videoPopup.style.display = 'block';
     document.body.style.overflow = 'hidden';
@@ -380,6 +381,8 @@ videoPopup.addEventListener('click', (e) => {
     }
 });
 </script>
+
+    
     
 </body>
 </html>
