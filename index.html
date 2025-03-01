@@ -83,7 +83,7 @@
                                 <div class="result-value" id="expectedRevenue">₪0</div>
                             </div>
                             <div class="result-item">
-                                <div class="result-label">אחוז עלות גיוס מהרווח</div>
+                                <div class="result-label">אחוז עלות גיוס מהמחזור</div>
                                 <div class="result-value" id="acquisitionCostPercentage">0%</div>
                             </div>
                             <div class="result-item">
@@ -229,9 +229,9 @@
 
                     <div class="term-card">
                         <div class="term-type">מדד תוצאה</div>
-                        <div class="term-header">אחוז עלות גיוס לקוח מהרווח</div>
+                        <div class="term-header">אחוז עלות גיוס לקוח מהמחזור</div>
                         <div class="term-description">
-                            החלק היחסי של עלויות הגיוס מתוך הרווח הכולל
+                            החלק היחסי של עלויות הגיוס מתוך המחזור הכולל
                         </div>
                         <div class="term-formula">
                             (עלות מדיה נדרשת / רווח צפוי) × 100
@@ -319,7 +319,7 @@
             const expectedRevenue = targetDeals * revenuePerDeal;
             const expectedProfit = expectedRevenue * (profitMargin / 100)-mediaRequired;
             const roi = mediaRequired ? (expectedProfit / mediaRequired) * 100 : 0;
-            const acquisitionCostPercentage = expectedProfit ? (mediaRequired / expectedProfit) * 100 : 0;
+            const acquisitionCostPercentage = expectedRevenue ? (mediaRequired / expectedRevenue) * 100 : 0;
 
             document.getElementById('requiredLeads').textContent = formatNumber(requiredLeads);
             document.getElementById('costPerLead').textContent = '₪' + formatNumber(costPerLead);
